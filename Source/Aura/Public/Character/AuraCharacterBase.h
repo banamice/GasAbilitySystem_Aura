@@ -7,6 +7,8 @@
 #include "GameFramework/Character.h"
 #include "AuraCharacterBase.generated.h"
 
+class UAuraAttributeSet;
+class UAuraAbilitySystemComopnent;
 class UAttributeSet;
 class UAbilitySystemComponent;
 
@@ -20,8 +22,7 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual UAttributeSet* GetAttributeSet() const; 
 	
-	virtual void PossessedBy(AController* NewController) override;
-	virtual void OnRep_PlayerState() override;
+
 protected:
 	virtual void BeginPlay() override;
 	

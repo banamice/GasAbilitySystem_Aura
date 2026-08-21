@@ -18,6 +18,9 @@ public:
 	AAuraChracter();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual UAttributeSet* GetAttributeSet() const; 
+	
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
 
 protected:
 	virtual void BeginPlay() override;
