@@ -35,6 +35,18 @@ AAuraChracter::AAuraChracter()
 	bUseControllerRotationYaw = false;
 }
 
+UAbilitySystemComponent* AAuraChracter::GetAbilitySystemComponent() const
+{
+	
+	return Super::GetAbilitySystemComponent();
+	
+}
+
+UAttributeSet* AAuraChracter::GetAttributeSet() const
+{
+	return Super::GetAttributeSet();
+}
+
 void AAuraChracter::BeginPlay()
 {
 	Super::BeginPlay();

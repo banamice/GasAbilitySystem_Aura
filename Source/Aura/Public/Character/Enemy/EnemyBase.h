@@ -14,8 +14,12 @@ class AURA_API AEnemyBase : public AAuraCharacterBase,public IIHighLightInterfac
 
 public:
 	AEnemyBase();
+	
+	
+	//~begin IIHighLightInterface
 	virtual void EnableHighLight() override;
 	virtual void DisableHighLight() override;
+	//~end IIHighLightInterface
 
 protected:
 	virtual void BeginPlay() override;

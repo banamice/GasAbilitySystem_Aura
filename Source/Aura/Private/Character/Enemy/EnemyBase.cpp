@@ -3,6 +3,7 @@
 
 #include "Character/Enemy/EnemyBase.h"
 
+#include "AbilitySystemComponent.h"
 #include "Aura/Aura.h"
 
 
@@ -12,6 +13,21 @@ AEnemyBase::AEnemyBase()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
+	
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	
+	AttributeSet = CreateDefaultSubobject<UAttributeSet>("AttributeSet");
+	
+}
+
+void AEnemyBase::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	
 }
 
 void AEnemyBase::EnableHighLight()
@@ -28,10 +44,6 @@ void AEnemyBase::DisableHighLight()
 	WeaponMesh->SetRenderCustomDepth(false);
 }
 
-void AEnemyBase::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
+
 
 
