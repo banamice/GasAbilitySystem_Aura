@@ -20,6 +20,7 @@ public:
 	virtual UAttributeSet* GetAttributeSet() const; 
 	
 	virtual void PossessedBy(AController* NewController) override;
+	
 	virtual void OnRep_PlayerState() override;
 
 protected:
@@ -31,5 +32,6 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<USpringArmComponent> SpringArmComponent;
 
+	void InitializeASCActorInfo();
 	
 };

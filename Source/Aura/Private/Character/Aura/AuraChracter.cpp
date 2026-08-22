@@ -8,8 +8,10 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Player/PlayerState/AuraPlayerState.h"
+#include "UI/HUD/AuraHUD.h"
 
 
+class UEnhancedInputLocalPlayerSubsystem;
 class AAuraPlayerState;
 
 AAuraChracter::AAuraChracter()
@@ -60,21 +62,19 @@ void AAuraChracter::BeginPlay()
 void AAuraChracter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	APlayerState* State = NewController->GetPlayerState<APlayerState>();
-	AAuraPlayerState* AuraPlayerState = Cast<AAuraPlayerState>(State);
-	check(AuraPlayerState);
-
-	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
 	
-	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
-	AttributeSet = AuraPlayerState->GetAttributeSet();
+	InitializeASCActorInfo();
 }
 
 void AAuraChracter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 	
-	
+	InitializeASCActorInfo();
+}
+
+void AAuraChracter::InitializeASCActorInfo()
+{
 	AAuraPlayerState * AuraPlayerState = GetPlayerState<AAuraPlayerState>();
 	check(AuraPlayerState);
 
@@ -82,6 +82,19 @@ void AAuraChracter::OnRep_PlayerState()
 	
 	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AuraPlayerState->GetAttributeSet();
+
+	//这样会导致其他的玩家的ps复制过来的时候都会去初始化一下本地玩家的hud  需要判断一下是不是本地玩家再操作
+	if (IsLocallyControlled())
+	{
+		if(APlayerController* PlayerController  =GetWorld()->GetFirstPlayerController() )
+		{
+			if(AAuraHUD* HUD = Cast<AAuraHUD>(PlayerController->GetHUD()))
+			{
+				HUD->InitializeOverlayWidget(AuraPlayerState,PlayerController,AbilitySystemComponent,AttributeSet);
+			}
+		}
+	}
+	
 }
 
 

@@ -33,8 +33,8 @@ private:
 	
 	void Move(const FInputActionValue& InputData);
 	
-	IIHighLightInterface*  LastCursorActor = nullptr;
-	IIHighLightInterface*  CurrentCursorActor = nullptr;
+	TObjectPtr<IIHighLightInterface> LastCursorActor = nullptr;
+	TObjectPtr<IIHighLightInterface> CurrentCursorActor = nullptr;
 	
 	void UpdateUnderCursorHighLight();
 	
