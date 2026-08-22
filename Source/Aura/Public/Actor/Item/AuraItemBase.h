@@ -3,11 +3,38 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayEffectTypes.h"
 #include "GameFramework/Actor.h"
 #include "AuraItemBase.generated.h"
 
+class UGameplayEffect;
 class USphereComponent;
 class UStaticMeshComponent;
+
+UENUM()
+enum class EAuraGETime : uint8
+{
+	EBeginOverlap,
+	EEndOverlap,
+	ENone
+};
+
+//一个GE的应用时机和取消时机
+USTRUCT(BlueprintType)
+struct FGEOPTime
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayEffect> GameplayEffectClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EAuraGETime ApplyTIME = EAuraGETime::ENone;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EAuraGETime RemoveTime = EAuraGETime::ENone;
+};
 
 UCLASS()
 class AURA_API AAuraItemBase : public AActor
@@ -18,17 +45,26 @@ public:
 	AAuraItemBase();
 
 protected:
-	UFUNCTION()
-	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-	UFUNCTION()
-	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 	virtual void BeginPlay() override;
 	
-private:
-	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<USphereComponent> SphereComponent;
 	
-	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<UStaticMeshComponent> StaticMeshComponent;
+	UFUNCTION(BlueprintCallable)
+	void ApplyGE( AActor*  TargetActor,const FGEOPTime& GEOPTime);
+	
+	UFUNCTION(BlueprintCallable)
+	void OnBeginOverlap(AActor* TargetActor);
+	UFUNCTION(BlueprintCallable)
+	void OnEndOverlap(AActor* TargetActor);
+	
+private:
+	UPROPERTY(EditDefaultsOnly,Category="Effect")
+	TArray<FGEOPTime> GEOPTimeArray;
+	
+	UPROPERTY()
+	TMap<FActiveGameplayEffectHandle,AActor*> RemoveOnEndOverlap;
+	
+	UPROPERTY(EditAnywhere,Category="Effect")
+	float EffectLevel = 1.f;
+	
 
 };

@@ -15,23 +15,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70f2c170-6a02-48c8-a4f8-bd4db467b0f0" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/BluePrint/UI/BP_AuraHUD.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/BluePrint/UI/ProgressBar/WBP_AuraProgressBarHeath.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/BluePrint/UI/ProgressBar/WBP_AuraProgressBarMana.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/BluePrint/UI/ProgressBar/WBP_ProgressBarBase.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/BluePrint/UI/WBP_AuraOverlay.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/BluePrint/UI/WidgetController/BP_AuraOverlayWidgetController.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/CT_EffectTable.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/CrystalHealth/BP_AuraCrystal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/CrystalHealth/GE_CrystalHeal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/Fire/BP_AuraItemFire.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/Fire/GE_InfiniteFire.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionDurationMana/BP_AuraPotioDurationMana.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionDurationMana/GE_PotionDurationMana.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionHealth/BP_AuraItemPotion.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionHealth/BP_AuraPotionHeal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionHealth/GE_PotionHeal.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionMana/BP_AuraPotionMana.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/PotionMana/GE_PotionMana.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/BluePrint/Character/Aura/ABP_Aura.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/BluePrint/Character/Aura/ABP_Aura.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/BluePrint/Game/GM_AuraGamemodeBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/BluePrint/Game/GM_AuraGamemodeBase.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/BP_AuraItemPotion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/BluePrint/Actor/Item/BP_AuraItemPotion.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/StartupMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/StartupMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Character/Aura/AuraChracter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Character/Aura/AuraChracter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/Input/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/Input/AuraPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Character/Aura/AuraChracter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Character/Aura/AuraChracter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/Input/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/Input/AuraPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actor/Item/AuraItemBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actor/Item/AuraItemBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actor/Item/AuraItemBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actor/Item/AuraItemBase.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +63,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../UE_5.8/UE_5.8/Engine/Source/Runtime/Core/Public/Templates/SharedPointer.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../UE_5.8/UE_5.8/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectBaseUtility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../UE_5.8/UE_5.8/Engine/Source/Runtime/Engine/Classes/GameFramework/Controller.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../UE_5.8/UE_5.8/Engine/Source/Runtime/Engine/Classes/GameFramework/MovementComponent.h" root0="FORCE_HIGHLIGHTING" />
@@ -74,18 +77,14 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Game/AuraGamemode.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Interactive/IHighLightInterface.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Widget/AuraUserWdiget.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/WidgetController/AuraOverlayController.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/WidgetController/AuraWidgetController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComopnent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Actor/Item/AuraItemBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Game/AuraGamemode.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Interactive/IHighLightInterface.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/HUD/AuraHUD.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/Widget/AuraUserWdiget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/WidgetController/AuraOverlayController.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/WidgetController/AuraWidgetController.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -94,61 +93,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="7.55132300780383E-268" />
-      <entry key="MS500" value="3.771188434444913E-54" />
-      <entry key="S2" value="5.493967486309648E-14" />
-      <entry key="S5" value="1.1218038881908411E-5" />
-      <entry key="S10" value="0.00995456639644979" />
-      <entry key="S30" value="1.1194874609076912" />
-      <entry key="S60" value="4.297924670732025" />
-      <entry key="M2" value="11.228866000753905" />
-      <entry key="M5" value="27.33909990015573" />
-      <entry key="M10" value="49.870224515711506" />
-      <entry key="M15" value="70.38189477169975" />
-      <entry key="M30" value="129.66316398136604" />
-      <entry key="H1" value="248.43099155050314" />
-      <entry key="H2" value="451.5532819180469" />
-      <entry key="H4" value="757.3764361188958" />
-      <entry key="D1" value="1482.5262386383772" />
-      <entry key="W1" value="1711.130969531845" />
+      <entry key="MS100" value="3.255372437122183E-94" />
+      <entry key="MS500" value="5.174125964653455E-19" />
+      <entry key="S2" value="1.047338502221317E-4" />
+      <entry key="S5" value="0.08902432373849434" />
+      <entry key="S10" value="0.880088789279376" />
+      <entry key="S30" value="4.12847570394015" />
+      <entry key="S60" value="6.092070863011635" />
+      <entry key="M2" value="7.404232422589355" />
+      <entry key="M5" value="8.747622431850942" />
+      <entry key="M10" value="13.739363825299822" />
+      <entry key="M15" value="21.899484578627938" />
+      <entry key="M30" value="53.10345786218753" />
+      <entry key="H1" value="119.36106304678665" />
+      <entry key="H2" value="254.80161567330686" />
+      <entry key="H4" value="543.085040253824" />
+      <entry key="D1" value="1628.9408039291568" />
+      <entry key="W1" value="2078.3996796952783" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000746240403864" />
-      <entry key="MS500" value="1.1494774745970155" />
-      <entry key="S2" value="1.6217902932079742" />
-      <entry key="S5" value="1.8269087271281823" />
-      <entry key="S10" value="1.9093846287686123" />
-      <entry key="S30" value="2.0518263544337234" />
-      <entry key="S60" value="2.608163064937477" />
-      <entry key="M2" value="3.845201648968211" />
-      <entry key="M5" value="5.9079163946348086" />
-      <entry key="M10" value="7.23482250127987" />
-      <entry key="M15" value="8.065491818259021" />
-      <entry key="M30" value="11.339634452178931" />
-      <entry key="H1" value="21.681345971444703" />
-      <entry key="H2" value="44.827300654763434" />
-      <entry key="H4" value="82.3586087647755" />
-      <entry key="D1" value="173.41799192468227" />
-      <entry key="W1" value="202.52334027461043" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000007978360141" />
+      <entry key="S5" value="1.0068217321376065" />
+      <entry key="S10" value="1.1422767900429935" />
+      <entry key="S30" value="2.0845555357758316" />
+      <entry key="S60" value="2.803509002365925" />
+      <entry key="M2" value="3.326578637482324" />
+      <entry key="M5" value="3.9668170100429605" />
+      <entry key="M10" value="6.41319719679299" />
+      <entry key="M15" value="9.993254898921563" />
+      <entry key="M30" value="20.581686089954204" />
+      <entry key="H1" value="36.177604294759576" />
+      <entry key="H2" value="58.645556935359984" />
+      <entry key="H4" value="97.47527009968088" />
+      <entry key="D1" value="234.92890015277317" />
+      <entry key="W1" value="291.6715608587941" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="8.053638028054135E-5" />
-      <entry key="MS500" value="0.15792094215370556" />
-      <entry key="S2" value="0.9041655204910136" />
-      <entry key="S5" value="1.429164627122554" />
-      <entry key="S10" value="1.6945510743202563" />
-      <entry key="S30" value="3.0565259377563168" />
-      <entry key="S60" value="6.790231478177012" />
-      <entry key="M2" value="14.96246502600478" />
-      <entry key="M5" value="33.16809118642604" />
-      <entry key="M10" value="57.054596440923916" />
-      <entry key="M15" value="78.40872525106477" />
-      <entry key="M30" value="140.97139595764165" />
-      <entry key="H1" value="270.07969855545" />
-      <entry key="H2" value="496.3492026553865" />
-      <entry key="H4" value="839.7088721482276" />
-      <entry key="D1" value="1655.9359097472088" />
-      <entry key="W1" value="1913.6529431156923" />
+      <entry key="MS100" value="4.662840380272952E-11" />
+      <entry key="MS500" value="0.008584798574819374" />
+      <entry key="S2" value="0.304486911815121" />
+      <entry key="S5" value="0.7115409640302423" />
+      <entry key="S10" value="1.7742684546613254" />
+      <entry key="S30" value="6.066798905640046" />
+      <entry key="S60" value="8.80203436154241" />
+      <entry key="M2" value="10.676945616602474" />
+      <entry key="M5" value="12.686795203723687" />
+      <entry key="M10" value="20.119582655279" />
+      <entry key="M15" value="31.850855095335096" />
+      <entry key="M30" value="73.63311798202905" />
+      <entry key="H1" value="155.48815153180817" />
+      <entry key="H2" value="313.404168912029" />
+      <entry key="H4" value="640.5251570046067" />
+      <entry key="D1" value="1863.8569625248365" />
+      <entry key="W1" value="2370.0690387136724" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -250,7 +249,8 @@
     <MESSAGE value="完成第一章 1.添加了aura角色 与移动逻辑 2.添加了enemybase 以及2个哥布林 3.添加了显示边缘接口 检测鼠标下指定的角色来判断是否高亮" />
     <MESSAGE value="第三章结束。主要是创建了两个组件 ASC 与attribute 分别给playerstate 和 enemy base 实例化了 并且给所有的charatcer和palyerstate都提供了获取接口&#10;&#10;然后设置了 actor info" />
     <MESSAGE value="第四章小结&#10;1. 了解了添加attribute的5个步骤&#10;  &#10;2. 学习了是如何使用GameplayAttribute_REPNOTIFY来实现客户端本地预测的&#10;  &#10;3. 学习了ue中ASC是如何获取其管理的atrributeSet 的&#10;  &#10;4. 学习了UE的反射机制 uclass 当然只是皮毛" />
-    <option name="LAST_COMMIT_MESSAGE" value="第四章小结&#10;1. 了解了添加attribute的5个步骤&#10;  &#10;2. 学习了是如何使用GameplayAttribute_REPNOTIFY来实现客户端本地预测的&#10;  &#10;3. 学习了ue中ASC是如何获取其管理的atrributeSet 的&#10;  &#10;4. 学习了UE的反射机制 uclass 当然只是皮毛" />
+    <MESSAGE value="第五章结束&#10;很好的一章。搭建了一个完整的mvc架构。model提供属性变化的委托 对于绑定到其委托上的controller并不在意&#10;&#10;controller 在绑定model委托的同时 为view提供委托 表明数据变化以及提供变换后的数据 controller层后续可能会在绑定到model的回调里有更多复杂的处理 目前只是透传 。&#10;&#10;view层就只关注与自己的逻辑 如何更新UI&#10;&#10;对于更多新的UI的话，比如说个人属性？就创建一个新的widget和新的controller就好 就这条链路是不会变的" />
+    <option name="LAST_COMMIT_MESSAGE" value="第五章结束&#10;很好的一章。搭建了一个完整的mvc架构。model提供属性变化的委托 对于绑定到其委托上的controller并不在意&#10;&#10;controller 在绑定model委托的同时 为view提供委托 表明数据变化以及提供变换后的数据 controller层后续可能会在绑定到model的回调里有更多复杂的处理 目前只是透传 。&#10;&#10;view层就只关注与自己的逻辑 如何更新UI&#10;&#10;对于更多新的UI的话，比如说个人属性？就创建一个新的widget和新的controller就好 就这条链路是不会变的" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

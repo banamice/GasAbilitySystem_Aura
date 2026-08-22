@@ -13,36 +13,84 @@ AAuraItemBase::AAuraItemBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	
-	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
-	SetRootComponent(StaticMeshComponent);
-	SphereComponent = CreateDefaultSubobject<USphereComponent>("SphereComponent");
-	SphereComponent->SetupAttachment(StaticMeshComponent);
-	
-	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	SetRootComponent(CreateDefaultSubobject<USceneComponent>("SceneComponent"));
 }
 
 void AAuraItemBase::BeginPlay()
 {
 	Super::BeginPlay();
-	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AAuraItemBase::OnSphereOverlap);
-	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AAuraItemBase::OnSphereEndOverlap);
 }
 
-void AAuraItemBase::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AAuraItemBase::ApplyGE( AActor* TargetActor, const FGEOPTime& GEOPTime)
 {
-	if (IAbilitySystemInterface*  AbilitySystemInterface = Cast<IAbilitySystemInterface>(OtherActor))
+	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	if (! ASC) return;
+	
+ 	check(GEOPTime.GameplayEffectClass);
+	
+	FGameplayEffectContextHandle ContextHandle = ASC->MakeEffectContext();
+	ContextHandle.AddSourceObject(this);
+	
+	FGameplayEffectSpecHandle Spec =  ASC->MakeOutgoingSpec(GEOPTime.GameplayEffectClass,EffectLevel,ContextHandle);
+	
+	FActiveGameplayEffectHandle ActiveHandle  =  ASC->ApplyGameplayEffectSpecToSelf(*Spec.Data);
+	//通过spec查看是否是inifity的并且需要在离开时结束
+	if (Spec.Data->Def->DurationPolicy == EGameplayEffectDurationType::Infinite && GEOPTime.RemoveTime == EAuraGETime::EEndOverlap)
 	{
-		const UAuraAttributeSet* AuraAttributeSet = Cast<UAuraAttributeSet>(AbilitySystemInterface->GetAbilitySystemComponent()->GetAttributeSet(UAuraAttributeSet::StaticClass()));
-		UAuraAttributeSet* Attribute = const_cast<UAuraAttributeSet*>(AuraAttributeSet);
-		Attribute->SetHealth(Attribute->GetHealth() + 100.0f);
+		//以ActiveHandle为key actor为value存下来这个需要移除的GE
+		RemoveOnEndOverlap.Add(ActiveHandle,TargetActor);
 	}
-	Destroy();
 }
 
-void AAuraItemBase::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AAuraItemBase::OnBeginOverlap(AActor* TargetActor)
 {
+	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	if (! ASC) return;
+	
+	for (auto & GE : GEOPTimeArray)
+	{
+		if (GE.ApplyTIME == EAuraGETime::EBeginOverlap)
+		{
+			ApplyGE(TargetActor,GE);
+		}
+	}
 }
+
+void AAuraItemBase::OnEndOverlap(AActor* TargetActor)
+{
+	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	if (! ASC) return;
+	
+	for (auto & GE : GEOPTimeArray)
+	{
+		if (GE.ApplyTIME == EAuraGETime::EEndOverlap)
+		{
+			ApplyGE(TargetActor,GE);
+		}
+	}
+	
+	TArray<FActiveGameplayEffectHandle> GEToRemove;
+	for (auto& GE:RemoveOnEndOverlap)
+	{
+		if (!IsValid(GE.Value))
+		{
+			//说明这个Actor已经无效了  比如说可能在范围内但是被销毁了。我也不要一直存着
+			GEToRemove.Add(GE.Key);
+			continue;
+		}
+		
+		if (GE.Value == TargetActor)
+		{
+			GEToRemove.Add(GE.Key);
+			ASC->RemoveActiveGameplayEffect(GE.Key,1.f);
+		}
+	}
+	for (auto&GE:GEToRemove)
+	{
+		RemoveOnEndOverlap.Remove(GE);
+	}
+}
+
 
 
 

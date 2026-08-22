@@ -15,6 +15,27 @@
  	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
  	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+
+USTRUCT()
+struct FEffectProperties
+{
+	GENERATED_BODY()
+	
+public:
+	UAbilitySystemComponent* TargetASC;
+	AActor* TargetAvatarActor;
+	ACharacter* TargetAvatarCharacter;
+	APlayerController* TargetController;
+	
+	UAbilitySystemComponent* SourceASC;
+	AActor* SourceAvatarActor;
+	ACharacter* SourceAvatarCharacter;
+	APlayerController* SourceController;
+	
+	FGameplayEffectContextHandle EffectContext;
+	
+};
+
 /**
  * 
  */
@@ -30,7 +51,10 @@ public:
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxHealth)
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Mana)
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana)
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+	
 protected:
+	
 private:
 	UPROPERTY(ReplicatedUsing=OnRep_Health)
 	FGameplayAttributeData Health;
@@ -50,5 +74,6 @@ private:
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& OldValue) const;
 	
-	
+	void SetFEffectProperties(FEffectProperties& EffectProperties,const FGameplayEffectModCallbackData& Data);
+
 };
