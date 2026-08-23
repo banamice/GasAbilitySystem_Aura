@@ -4,6 +4,7 @@
 #include "Character/Aura/AuraChracter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComopnent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -59,18 +60,31 @@ void AAuraChracter::BeginPlay()
 	
 }
 
+
+
 void AAuraChracter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	
-	InitializeASCActorInfo();
+	OnASCReady();
+	
 }
 
 void AAuraChracter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 	
+	OnASCReady();
+	
+}
+
+void AAuraChracter::OnASCReady()
+{
 	InitializeASCActorInfo();
+	if (UAuraAbilitySystemComopnent* ASC = Cast<UAuraAbilitySystemComopnent>(GetAbilitySystemComponent()))
+	{
+		ASC->InitAsc();
+	}
 }
 
 void AAuraChracter::InitializeASCActorInfo()

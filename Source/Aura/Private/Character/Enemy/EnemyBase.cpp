@@ -27,9 +27,17 @@ AEnemyBase::AEnemyBase()
 void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
+	OnASCReady();
 	
+}
+
+void AEnemyBase::OnASCReady()
+{
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
-	
+	if (UAuraAbilitySystemComopnent* ASC = Cast<UAuraAbilitySystemComopnent>(GetAbilitySystemComponent()))
+	{
+		ASC->InitAsc();
+	}
 }
 
 void AEnemyBase::EnableHighLight()

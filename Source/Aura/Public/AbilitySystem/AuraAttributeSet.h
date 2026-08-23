@@ -52,7 +52,7 @@ public:
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Mana)
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana)
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
-	
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 protected:
 	
 private:
@@ -76,4 +76,5 @@ private:
 	
 	void SetFEffectProperties(FEffectProperties& EffectProperties,const FGameplayEffectModCallbackData& Data);
 
+	void ClampValue(const struct FGameplayEffectModCallbackData& Data);
 };

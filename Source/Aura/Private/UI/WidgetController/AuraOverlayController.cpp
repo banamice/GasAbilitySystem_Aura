@@ -22,32 +22,52 @@ void UAuraOverlayController::BindDelegateForModel()
 	UAuraAbilitySystemComopnent* ASC = Cast<UAuraAbilitySystemComopnent>(AbilitySystemComponent);
 	UAuraAttributeSet* AS = Cast<UAuraAttributeSet>(AttributeSet);
 	if (!ASC || !AS) return;
-	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetHealthAttribute()).AddUObject(this,
-		&UAuraOverlayController::OnModelHealthChanged);
-	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetMaxHealthAttribute()).AddUObject(this,
-		&UAuraOverlayController::OnModelMaxHealthChanged);
-	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetManaAttribute()).AddUObject(this,
-		&UAuraOverlayController::OnModelManaChanged);
-	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetMaxManaAttribute()).AddUObject(this,
-		&UAuraOverlayController::OnModelMaxManaChanged);
+	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetHealthAttribute()).AddLambda(
+	[this](const FOnAttributeChangeData& Data)
+	{
+		OnHealthChanged.Broadcast(Data.NewValue);
+	}	
+	);
+	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetMaxHealthAttribute()).AddLambda(
+	[this](const FOnAttributeChangeData& Data)
+	{
+		OnMaxHealthChanged.Broadcast(Data.NewValue);
+	}	
+	);
+	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetManaAttribute()).AddLambda(
+	[this](const FOnAttributeChangeData& Data)
+	{
+		OnManaChanged.Broadcast(Data.NewValue);
+	}	
+	);
+	ASC->GetGameplayAttributeValueChangeDelegate(AS->GetMaxManaAttribute()).AddLambda(
+	[this](const FOnAttributeChangeData& Data)
+	{
+		OnMaxManaChanged.Broadcast(Data.NewValue);
+	}	
+	);
+	
+	
+	ASC->OnGEApplySignature.AddLambda(
+	[this ](const FGameplayTagContainer& AssetTags)
+	{
+		FGameplayTag Message =  FGameplayTag::RequestGameplayTag(FName("Message"));
+		for (const auto& Tag : AssetTags)
+		{
+			if (Tag.MatchesTag(Message))
+			{
+				check(MessageDataTable);
+				FMessageDataTable* MessageRow =  GetDataRow<FMessageDataTable>(Tag,MessageDataTable);
+				if (MessageRow)
+				{
+					//广播
+					OnMessageGEApply.Broadcast(*MessageRow);
+				}
+			}
+		}
+	} 
+	);
 }
 
-void UAuraOverlayController::OnModelHealthChanged(const FOnAttributeChangeData& Data)
-{
-	OnHealthChanged.Broadcast(Data.NewValue);
-}
 
-void UAuraOverlayController::OnModelMaxHealthChanged(const FOnAttributeChangeData& Data)
-{
-	OnMaxHealthChanged.Broadcast(Data.NewValue);
-}
 
-void UAuraOverlayController::OnModelManaChanged(const FOnAttributeChangeData& Data)
-{
-	OnManaChanged.Broadcast(Data.NewValue);
-}
-
-void UAuraOverlayController::OnModelMaxManaChanged(const FOnAttributeChangeData& Data)
-{
-	OnMaxManaChanged.Broadcast(Data.NewValue);
-}

@@ -8,10 +8,29 @@
 #include "AuraOverlayController.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnManaChangedSignature, float, NewMana);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxManaChangedSignature, float, NewMaxMana);
+class UAuraUserWdigetBase;
+USTRUCT(BlueprintType)
+struct FMessageDataTable : public FTableRowBase
+{
+	GENERATED_BODY()
+	
+public:
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Message")
+	FGameplayTag MessageTag;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Message")
+	FText Message;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Message")
+	TSubclassOf<UAuraUserWdigetBase> Widget;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Message")
+	TObjectPtr<UTexture2D> Icon;
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMessageGEApplySignature, const FMessageDataTable&, MessagRow);
+
 
 
 /**
@@ -26,21 +45,32 @@ public:
 	/* start Delegate for widget*/
 	virtual void BroadCastInitValue();
 	UPROPERTY(BlueprintAssignable)
-	FOnHealthChangedSignature OnHealthChanged;
+	FOnAttributeChangedSignature OnHealthChanged;
 	UPROPERTY(BlueprintAssignable)
-	FOnMaxHealthChangedSignature OnMaxHealthChanged;
+	FOnAttributeChangedSignature OnMaxHealthChanged;
 	UPROPERTY(BlueprintAssignable)
-	FOnManaChangedSignature OnManaChanged;
+	FOnAttributeChangedSignature OnManaChanged;
 	UPROPERTY(BlueprintAssignable)
-	FOnMaxManaChangedSignature OnMaxManaChanged;
+	FOnAttributeChangedSignature OnMaxManaChanged;
+	UPROPERTY(BlueprintAssignable)
+	FOnMessageGEApplySignature OnMessageGEApply;
 	/*end Delegate for widget*/
 	
 	/*start delegate for model*/
 	virtual void BindDelegateForModel();
 	
-	void OnModelHealthChanged(const FOnAttributeChangeData& Data);
-	void OnModelMaxHealthChanged(const FOnAttributeChangeData& Data);
-	void OnModelManaChanged(const FOnAttributeChangeData& Data);
-	void OnModelMaxManaChanged(const FOnAttributeChangeData& Data);
+
+	
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="Message")
+	TObjectPtr<UDataTable> MessageDataTable;
 	/*end delegate for model*/
+	
+	template<class T>
+	static T* GetDataRow(FGameplayTag Tag,UDataTable* Table);
 };
+
+template <class T>
+T* UAuraOverlayController::GetDataRow(FGameplayTag Tag, UDataTable* Table)
+{
+	return Table->FindRow<T>(Tag.GetTagName(),FString());
+}

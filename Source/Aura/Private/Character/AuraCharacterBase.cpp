@@ -37,4 +37,8 @@ void AAuraCharacterBase::BeginPlay()
 	
 }
 
+void AAuraCharacterBase::OnASCReady()
+{
+}
+
 
