@@ -20,8 +20,15 @@ public:
 	virtual void EnableHighLight() override;
 	virtual void DisableHighLight() override;
 	//~end IIHighLightInterface
+	
+	//begin IICombatInterface
+	virtual uint32 GetPlayerLevel() const override;
+	//~end IICombatInterface
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void OnASCReady() override;
+	
+	UPROPERTY(EditDefaultsOnly,Category= "Course|Attribute")
+	uint32 Level = 1;
 };

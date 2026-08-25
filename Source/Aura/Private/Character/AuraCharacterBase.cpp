@@ -41,4 +41,25 @@ void AAuraCharacterBase::OnASCReady()
 {
 }
 
+void AAuraCharacterBase::ApplyGEToSelf(const TSubclassOf<UGameplayEffect>& GEClass, float Level)
+{
+	check(GetAbilitySystemComponent())
+	check(GetAttributeSet())
+	check(GEClass)
+	
+	FGameplayEffectContextHandle Context =  GetAbilitySystemComponent()->MakeEffectContext();
+	Context.AddSourceObject(this);
+	FGameplayEffectSpecHandle Spec = GetAbilitySystemComponent()->MakeOutgoingSpec(GEClass,Level,Context);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*Spec.Data,GetAbilitySystemComponent());
+}
+
+void AAuraCharacterBase::InitAS()
+{
+	ApplyGEToSelf(PrimaryASInitial,1.f);
+	ApplyGEToSelf(SecondaryASInitial,1.f);
+	ApplyGEToSelf(VitalASInitial,1.f);
+}
+
+
+
 

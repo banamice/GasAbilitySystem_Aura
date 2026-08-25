@@ -57,6 +57,7 @@ protected:
 	void OnEndOverlap(AActor* TargetActor);
 	
 private:
+	//重叠时触发GE的数组包含触发时机和触发GE
 	UPROPERTY(EditDefaultsOnly,Category="Effect")
 	TArray<FGEOPTime> GEOPTimeArray;
 	

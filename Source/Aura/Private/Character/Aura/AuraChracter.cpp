@@ -78,6 +78,13 @@ void AAuraChracter::OnRep_PlayerState()
 	
 }
 
+uint32 AAuraChracter::GetPlayerLevel() const
+{
+	AAuraPlayerState * AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(AuraPlayerState);
+	return AuraPlayerState->GetLevel();
+}
+
 void AAuraChracter::OnASCReady()
 {
 	InitializeASCActorInfo();
@@ -85,6 +92,7 @@ void AAuraChracter::OnASCReady()
 	{
 		ASC->InitAsc();
 	}
+	InitAS();
 }
 
 void AAuraChracter::InitializeASCActorInfo()

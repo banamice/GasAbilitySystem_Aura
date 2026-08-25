@@ -1,4 +1,5 @@
-// 
+// Test line added by AI assistant
+// Second test line — verifying edit capability
 
 
 #include "AbilitySystem/AuraAttributeSet.h"
@@ -10,21 +11,9 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(0.f);
-	InitMaxHealth(100.f);
-	InitMana(0.f);
-	InitMaxMana(100.f);
 }
 
-void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Health, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
-}
+
 
 void UAuraAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)
 {
@@ -39,11 +28,11 @@ void UAuraAttributeSet::ClampValue(const struct FGameplayEffectModCallbackData& 
 {
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
-		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+		SetHealth(FMath::Clamp(Health.GetBaseValue(), 0.f, GetMaxHealth()));
 	}
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{
-		SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
+		SetMana(FMath::Clamp(Mana.GetBaseValue(), 0.f, GetMaxMana()));
 	}
 }
 
@@ -58,28 +47,6 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 	{
 		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
 	}
-}
-
-
-
-void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldValue) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Health, OldValue);
-}
-
-void UAuraAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldValue) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxHealth, OldValue);
-}
-
-void UAuraAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldValue) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Mana, OldValue);
-}
-
-void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldValue) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxMana, OldValue);
 }
 
 void UAuraAttributeSet::SetFEffectProperties(FEffectProperties& EffectProperties, const FGameplayEffectModCallbackData& Data)
@@ -116,4 +83,100 @@ void UAuraAttributeSet::SetFEffectProperties(FEffectProperties& EffectProperties
 	
 }
 
+void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Health, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Str, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Int, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Luck, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Def, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, PhysicalDamage, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MagicDamage, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, CriticalChance, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, CriticalDamage, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, HealthRegeneration, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, ManaRegeneration, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, BlockChance, COND_None, REPNOTIFY_Always);
+}
+
+void UAuraAttributeSet::OnRep_Str(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Str, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_Int(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Int, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_Luck(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Luck, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_Def(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Def, OldValue);
+}
+
+
+void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Health, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxHealth, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Mana, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxMana, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_PhysicalDamage(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, PhysicalDamage, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_MagicDamage(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MagicDamage, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_CriticalChance(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CriticalChance, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_CriticalDamage(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CriticalDamage, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_HealthRegeneration(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, HealthRegeneration, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_ManaRegeneration(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, ManaRegeneration, OldValue);
+}
+
+void UAuraAttributeSet::OnRep_BlockChance(const FGameplayAttributeData& OldValue) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, BlockChance, OldValue);
+}
 

@@ -54,6 +54,11 @@ void AEnemyBase::DisableHighLight()
 	WeaponMesh->SetRenderCustomDepth(false);
 }
 
+uint32 AEnemyBase::GetPlayerLevel() const
+{
+	return Level;
+}
+
 
 
 

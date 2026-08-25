@@ -22,6 +22,9 @@ public:
 	virtual void PossessedBy(AController* NewController) override;
 	
 	virtual void OnRep_PlayerState() override;
+	//begin IICombatInterface
+	virtual uint32 GetPlayerLevel() const override;
+	//~end IICombatInterface
 
 protected:
 	virtual void BeginPlay() override;

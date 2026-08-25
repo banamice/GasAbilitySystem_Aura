@@ -1,4 +1,4 @@
-// 
+// Claude has demonstrated text editing capabilities in this file
 
 
 #include "AbilitySystem/AuraAbilitySystemComopnent.h"
@@ -12,7 +12,6 @@ void UAuraAbilitySystemComopnent::InitAsc()
 void UAuraAbilitySystemComopnent::OnGEApply(UAbilitySystemComponent* ASC, const FGameplayEffectSpec& GESpec,
 	FActiveGameplayEffectHandle AGEHandle)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("OnGEApply")));
 	FGameplayTagContainer OutContainer;
 	GESpec.GetAllAssetTags(OutContainer);
 	
