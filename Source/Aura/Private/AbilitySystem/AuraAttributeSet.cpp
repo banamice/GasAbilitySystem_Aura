@@ -3,6 +3,7 @@
 
 
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/AuraGameplayTags.h"
 
 #include "AbilitySystemComponent.h"
 #include "GameplayEffectExtension.h"
@@ -11,6 +12,25 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	const AuraTags& Tags = AuraTags::Get();
+
+	TagValueMap.Add(Tags.Attributes_Primary_Str, GetStrAttribute());
+	TagValueMap.Add(Tags.Attributes_Primary_Int, GetIntAttribute());
+	TagValueMap.Add(Tags.Attributes_Primary_Luck, GetLuckAttribute());
+	TagValueMap.Add(Tags.Attributes_Primary_Def, GetDefAttribute());
+
+	TagValueMap.Add(Tags.Attributes_Vital_Health, GetHealthAttribute());
+	TagValueMap.Add(Tags.Attributes_Vital_Mana, GetManaAttribute());
+
+	TagValueMap.Add(Tags.Attributes_Secondary_MaxHealth, GetMaxHealthAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_MaxMana, GetMaxManaAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_PhysicalDamage, GetPhysicalDamageAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_MagicDamage, GetMagicDamageAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_CriticalChance, GetCriticalChanceAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_CriticalDamage, GetCriticalDamageAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_HealthRegeneration, GetHealthRegenerationAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_ManaRegeneration, GetManaRegenerationAttribute());
+	TagValueMap.Add(Tags.Attributes_Secondary_BlockChance, GetBlockChanceAttribute());
 }
 
 
@@ -179,4 +199,3 @@ void UAuraAttributeSet::OnRep_BlockChance(const FGameplayAttributeData& OldValue
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, BlockChance, OldValue);
 }
-

@@ -56,6 +56,8 @@ public:
 	UAuraAttributeSet();
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 	
+	UPROPERTY()
+	TMap<FGameplayTag,FGameplayAttribute> TagValueMap;
 	
 	/*
 	 * SecondaryAttribute

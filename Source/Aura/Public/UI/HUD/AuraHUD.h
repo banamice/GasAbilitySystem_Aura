@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "UI/WidgetController/AuraAttributeMenuController.h"
 #include "AuraHUD.generated.h"
 
 class UAttributeSet;
@@ -25,6 +26,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	UAuraWidgetControllerBase* GetOverlayWidgetController(const FWidgetControllerParams& Params);
+	UFUNCTION(BlueprintCallable)
+	UAuraWidgetControllerBase* GetAttributeWidgetController(const FWidgetControllerParams& Params);
 	
 	
 protected:
@@ -34,6 +37,8 @@ protected:
 	
 	UPROPERTY(BlueprintReadOnly, Category = "UI")
 	TObjectPtr<UAuraWidgetControllerBase> OverlayWidgetController;
+	UPROPERTY(BlueprintReadOnly, Category = "UI")
+	TObjectPtr<UAuraAttributeMenuController> AttributeWidgetController;
 	
 	
 private:
@@ -42,4 +47,7 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "UI",meta=(AllowPrivateAccess="true"))
 	TSubclassOf<UAuraUserWdigetBase> PlayerOverlayClass;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "UI",meta=(AllowPrivateAccess="true"))
+	TSubclassOf<UAuraWidgetControllerBase> AttributeWidgetControllerClass;
 };

@@ -45,3 +45,16 @@ UAuraWidgetControllerBase* AAuraHUD::GetOverlayWidgetController(const FWidgetCon
 		return OverlayWidgetController;
 	}
 }
+
+UAuraWidgetControllerBase* AAuraHUD::GetAttributeWidgetController(const FWidgetControllerParams& Params)
+{
+	if (!AttributeWidgetController)
+	{
+		AttributeWidgetController = NewObject<UAuraAttributeMenuController>(this,AttributeWidgetControllerClass);
+		AttributeWidgetController->InitWidgetController(Params);
+		return AttributeWidgetController;
+	}else
+	{
+		return AttributeWidgetController;
+	}
+}

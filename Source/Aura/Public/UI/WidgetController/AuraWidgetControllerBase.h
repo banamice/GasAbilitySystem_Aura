@@ -37,7 +37,7 @@ struct FWidgetControllerParams
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class AURA_API UAuraWidgetControllerBase : public UObject
 {
 	GENERATED_BODY()
@@ -45,7 +45,9 @@ class AURA_API UAuraWidgetControllerBase : public UObject
 public:
 	void InitWidgetController(const FWidgetControllerParams& Params);
 	
+	UFUNCTION(BlueprintCallable)
 	virtual void BroadCastInitValue();
+	UFUNCTION(BlueprintCallable)
 	virtual void BindDelegateForModel();
 protected:
 	UPROPERTY(BlueprintReadOnly)
