@@ -20,7 +20,7 @@ struct FAuraAttributeData
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	FText AttributeDescription;
 	UPROPERTY(BlueprintReadOnly)
-	float DefaultValue;
+	float DefaultValue = 0.f;
 };
 /**
  * 

@@ -18,8 +18,13 @@ public:
 	void InitAsc();
 	FOnGEApplySignature OnGEApplySignature;
 	
-private:
+	void GiveCharacterAbility(const TArray<TSubclassOf<UGameplayAbility>>& GameplayAbilityClass);
 	
-	void OnGEApply( UAbilitySystemComponent* ASC, const FGameplayEffectSpec& GESpec, FActiveGameplayEffectHandle AGEHandle);
+	void OnAbilityInputHold(const FGameplayTag& InputTag);
+	void OnAbilityInputRelease(const FGameplayTag& InputTag);
+	
+private:
+	UFUNCTION(Client,Reliable)
+	void Client_OnGEApply( UAbilitySystemComponent* ASC, const FGameplayEffectSpec& GESpec, FActiveGameplayEffectHandle AGEHandle);
 
 };

@@ -24,6 +24,7 @@ public:
 	virtual void OnRep_PlayerState() override;
 	//begin IICombatInterface
 	virtual uint32 GetPlayerLevel() const override;
+	virtual FVector GetProjectileSpawnLocation() const override;
 	//~end IICombatInterface
 
 protected:

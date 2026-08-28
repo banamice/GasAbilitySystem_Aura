@@ -43,6 +43,20 @@ public:
 	/*
 	 * EndSecondaryAttribute
 	 */
+
+	/*
+	 * Input Tags
+	 */
+	FGameplayTag InputTag_LMB;
+	FGameplayTag InputTag_RMB;
+	FGameplayTag InputTag_KEY1;
+	FGameplayTag InputTag_KEY2;
+	FGameplayTag InputTag_KEY3;
+	FGameplayTag InputTag_KEY4;
+	/*
+	 * End Input Tags
+	 */
+
 private:
 	static AuraTags Instance;
 };

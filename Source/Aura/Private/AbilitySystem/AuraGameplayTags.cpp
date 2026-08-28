@@ -40,6 +40,19 @@ void AuraTags::Init()
 	/*
 	 * EndSecondaryAttribute
 	 */
+
+	/*
+	 * Input Tags
+	 */
+	Get().InputTag_LMB = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.LMB"), FString("LMB"));
+	Get().InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.RMB"), FString("RMB"));
+	Get().InputTag_KEY1 = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.KEY1"), FString("KEY1"));
+	Get().InputTag_KEY2 = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.KEY2"), FString("KEY2"));
+	Get().InputTag_KEY3 = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.KEY3"), FString("KEY3"));
+	Get().InputTag_KEY4 = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.KEY4"), FString("KEY4"));
+	/*
+	 * End Input Tags
+	 */
 }
 
 AuraTags AuraTags::Instance;

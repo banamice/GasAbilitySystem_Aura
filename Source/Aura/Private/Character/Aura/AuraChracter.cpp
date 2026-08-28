@@ -67,7 +67,7 @@ void AAuraChracter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 	
 	OnASCReady();
-	
+	GiveCharacterAbility();
 }
 
 void AAuraChracter::OnRep_PlayerState()
@@ -83,6 +83,11 @@ uint32 AAuraChracter::GetPlayerLevel() const
 	AAuraPlayerState * AuraPlayerState = GetPlayerState<AAuraPlayerState>();
 	check(AuraPlayerState);
 	return AuraPlayerState->GetLevel();
+}
+
+FVector AAuraChracter::GetProjectileSpawnLocation() const
+{
+	return WeaponMesh->GetSocketLocation(ProjectileSocketName);
 }
 
 void AAuraChracter::OnASCReady()

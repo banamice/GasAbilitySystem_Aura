@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ClaudeCodeTabState">
+    <option name="tabNames">
+      <map>
+        <entry key="0" value="AI1" />
+      </map>
+    </option>
     <option name="tabSessions">
       <map>
         <entry key="0">
           <value>
             <TabSessionState>
               <option name="provider" value="codex" />
-              <option name="sessionId" value="01a0435a-67f3-7963-a2c3-36f561772376" />
-              <option name="cwd" value="E:\UE5\projects\Aura\Aura" />
               <option name="model" value="gpt-5.6-sol" />
               <option name="permissionMode" value="bypassPermissions" />
             </TabSessionState>

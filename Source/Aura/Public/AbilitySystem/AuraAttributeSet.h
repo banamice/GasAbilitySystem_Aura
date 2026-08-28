@@ -16,29 +16,18 @@
  	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 
-USTRUCT()
 struct FEffectProperties
 {
-	GENERATED_BODY()
-	
 public:
-	UPROPERTY()
-	UAbilitySystemComponent* TargetASC;
-	UPROPERTY()
-	AActor* TargetAvatarActor;
-	UPROPERTY()
-	ACharacter* TargetAvatarCharacter;
-	UPROPERTY()
-	APlayerController* TargetController;
-	
-	UPROPERTY()
-	UAbilitySystemComponent* SourceASC;
-	UPROPERTY()
-	AActor* SourceAvatarActor;
-	UPROPERTY()
-	ACharacter* SourceAvatarCharacter;
-	UPROPERTY()
-	APlayerController* SourceController;
+	UAbilitySystemComponent* TargetASC = nullptr;
+	AActor* TargetAvatarActor = nullptr;
+	ACharacter* TargetAvatarCharacter = nullptr;
+	APlayerController* TargetController = nullptr;
+
+	UAbilitySystemComponent* SourceASC = nullptr;
+	AActor* SourceAvatarActor = nullptr;
+	ACharacter* SourceAvatarCharacter = nullptr;
+	APlayerController* SourceController = nullptr;
 	
 	FGameplayEffectContextHandle EffectContext;
 	

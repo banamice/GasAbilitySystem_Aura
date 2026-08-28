@@ -29,6 +29,10 @@ UAttributeSet* AAuraCharacterBase::GetAttributeSet() const
 	return AttributeSet;
 }
 
+FVector AAuraCharacterBase::GetProjectileSpawnLocation() const
+{
+	return IICombatInterface::GetProjectileSpawnLocation();
+}
 
 
 void AAuraCharacterBase::BeginPlay()
@@ -58,6 +62,15 @@ void AAuraCharacterBase::InitAS()
 	ApplyGEToSelf(PrimaryASInitial,1.f);
 	ApplyGEToSelf(SecondaryASInitial,1.f);
 	ApplyGEToSelf(VitalASInitial,1.f);
+}
+
+void AAuraCharacterBase::GiveCharacterAbility()
+{
+	UAuraAbilitySystemComopnent* ASC = Cast<UAuraAbilitySystemComopnent>(GetAbilitySystemComponent());
+	if (!ASC) return;
+	if (!HasAuthority()) return;
+	
+	ASC->GiveCharacterAbility(SetUpAbility);
 }
 
 

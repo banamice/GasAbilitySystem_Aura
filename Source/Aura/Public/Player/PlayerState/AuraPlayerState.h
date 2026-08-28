@@ -29,9 +29,9 @@ public:
 	
 protected:
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
 	UPROPERTY()
-	TObjectPtr<UAttributeSet> AttributeSet;
+	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
 	
 private:
 	UPROPERTY(ReplicatedUsing=OnRep_Level,EditAnywhere,Category="Course|Attribute")
